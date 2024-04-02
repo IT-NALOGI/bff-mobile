@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.acme";
+option java_outer_classname = "RentralGrpcProto";
+
+// The rental service definition.
+service RentalService {
+  // Create a new rental (POST)
+  rpc CreateRental (CreateRentalRequest) returns (RentalResponse);
+
+  // Get a rental by ID (GET)
+  rpc GetRental (GetRentalRequest) returns (RentalResponse);
+
+  // Update a rental (PUT)
+  rpc UpdateRental (UpdateRentalRequest) returns (RentalResponse);
+
+  // Delete a rental (DELETE)
+  rpc DeleteRental (DeleteRentalRequest) returns (RentalResponse);
+}
+
+// Request to create a rental
+message CreateRentalRequest {
+  string userId = 1;
+  string avtoId = 2;
+  string startDate = 3;
+  string endDate = 4;
+}
+
+// Request to get a rental by ID
+message GetRentalRequest {
+  string rentalId = 1;
+}
+
+// Request to update a rental
+message UpdateRentalRequest {
+  string rentalId = 1;
+  string userId = 2;
+  string avtoId = 3;
+  string startDate = 4;
+  string endDate = 5;
+  string status = 6;
+
+}
+
+// Request to delete a rental
+message DeleteRentalRequest {
+  string rentalId = 1;
+}
+
+// Response containing rental details
+message RentalResponse {
+  string rentalId = 1;
+  string userId = 2;
+  string avtoId = 3;
+  string startDate = 4;
+  string endDate = 5;
+  string status = 6;
+}
